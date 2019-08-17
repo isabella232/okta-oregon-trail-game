@@ -15,7 +15,7 @@ var caravan = {
   medicine: 5
 }
 
-var checkpoints = ["Fort Laramie", "the Big Blue River", "Fort Bridger", "the Snake River"];
+var checkpoints = ["Fort Roll Your Own Auth", "Fort AD On-Prem in a Closet", "Fort AD On-Prem in a Datacenter", "Fort AD Syncd to Okta"];
 
 function Character(name) {
   this.name = name;
@@ -97,18 +97,18 @@ function fates(roll, rivOrTrail) {
       if (caravan.party[charIndex].diseases > 0) {
         more = "nother";
       }
-      var diseaseNames = ["dysentery", "cholera", "typhoid", "measles", "diphtheria", "scurvy"];
+      var diseaseNames = ["dysentery", "ADNSS - AD Not Syncing Syndrome", "tetnis from sharp on-prem server", "exhaustion from trying to debug AD", "hypothermia from frigid server room", "boredom while waiting for updates to download"];
       var diseaseIndex = rollNumber(0, diseaseNames.length);
       $("#randomEventMessage").text(caravan.party[charIndex].name+" contracted " + diseaseNames[diseaseIndex] + "!");
       caravan.party[charIndex].diseases += 1;
     } else if (roll<=14) {
-      $("#randomEventMessage").text(caravan.party[charIndex].name + " broke a foot while running from a buffalo.");
+      $("#randomEventMessage").text(caravan.party[charIndex].name + " broke a foot while running in the datacenter.");
       caravan.party[charIndex].health -= 50;
     } else if (roll<=18 && caravan.food > 0){
-      $("#randomEventMessage").text("Everyone shunned " + caravan.party[charIndex].name+" after dropping a bushel of food!");
+      $("#randomEventMessage").text("Everyone shunned " + caravan.party[charIndex].name+" after dropping a server on the floor!");
       caravan.food -= 50;
     } else if (roll<=21){
-      $("#randomEventMessage").text("There was a snake in " +  caravan.party[charIndex].name + "'s boot. " + caravan.party[charIndex].name + " contracted a disease.");
+      $("#randomEventMessage").text("There was a virus in " +  caravan.party[charIndex].name + "'s datacenter. " + caravan.party[charIndex].name + " contracted a disease.");
       caravan.party[charIndex].diseases += 1;
     } else if (roll >= 98) {
       caravan.food += 50;
@@ -122,7 +122,7 @@ function fates(roll, rivOrTrail) {
       });
       $("#randomEventMessage").text("You found a not-too-hot hot spring! Your party feels more rested.");
     } else {
-      $("#event").html("You have traveled a day and are one  step closer to Oregon.");
+      $("#event").html("You have traveled a day and are one step closer to switching to Okta.");
     }
   } else if (rivOrTrail === "river") {
     if (roll <= 10) {
@@ -146,7 +146,7 @@ function fates(roll, rivOrTrail) {
       });
       $("#randomEventMessage").text("The river was freezing cold! Everyone loses " + amount + " health.");
     } else {
-      $("#event").text("Your party successfully crossed the river. Onward to Oregon.")
+      $("#event").text("Your party successfully crossed the river. Onward to Okta.")
       return;
     }
   } else {
@@ -180,7 +180,7 @@ function gameChecker() {
   if (game.daysLeft === 0) {  // GAME OVER WIN
     $("#randomEventMessage, #checkPoint, #event").empty();
     var left = caravan.party.length;
-    $("#checkPoint").html("WINNER! WINNER! CHICKEN DINNER! Only " + left + " of your party has survived.");
+    $("#checkPoint").html("WINNER! You've retired AD and cut over to Okta! Only " + left + " of your party has survived.");
     $(".imgHeader").css("background-image", "url(img/endGameWin.jpg)");
     $(".restartGame").show();
     $(".continueOnTrail, .rest, .mourn, .hunt, .talk, .heal").hide();
